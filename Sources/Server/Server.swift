@@ -32,6 +32,11 @@ open class Server {
   public init(identity: CertificateIdentity, caCertificates: [Certificate]) {
     tlsConfig = TLSConfig(serverIdentity: identity, caCertificates: caCertificates)
   }
+    
+  /// Initializes a unsecure Server instance with custom quality of service
+  public init(qualityOfService: QualityOfService) {
+    workerQueue.qualityOfService = qualityOfService
+  }
 
   /// Starts the server on the specified port or 0 for automatic port assignment.
   open func start(port: Endpoint.Port = 0, interface: String? = nil) throws {
